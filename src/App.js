@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import './App.css';
 
+const dataUrl = './hubspot-students-data.json'
+
 function App() {
   const [devskillerEmail, setDevskillerEmail] = useState()
   console.log(devskillerEmail)
+
+  const validateHandler = dataUrl => {
+    fetch(dataUrl)
+      .then(res => console.log(res.json()))
+  }
 
   return (
     <div className="App">
@@ -12,10 +19,7 @@ function App() {
           Acesso ao certificado
         </h1>
       </header>
-      <form onSubmit={e => {
-
-        console.log(e)
-      }}>
+      <form onSubmit={validateHandler(dataUrl)}>
         <div>
           <input onChange={e => {
             e.preventDefault()
