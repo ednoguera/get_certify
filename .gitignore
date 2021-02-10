@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Helpers, Python and JSON generator (PY-BOT)
+tasks.json
+extract_csv.py
+test_extract_csv.py
+hubspot-students-data.csv
