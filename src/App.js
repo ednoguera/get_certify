@@ -6,14 +6,17 @@ const dataUrl = './hubspot-students-data.json'
 function App() {
   const [devskillerEmail, setDevskillerEmail] = useState()
   const [studentList, setStudentList] = useState()
+  const [emailList, setEmailList] = useState(false)
 
-  console.log(devskillerEmail)
 
-  const validateHandler = dataUrl => {
+  const fetchData = (e) => {
+    e.preventDefault()
+
     fetch(dataUrl)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        setStudentList(data)
+        setEmailList(data.map(email => email.email))
       })
   }
 
@@ -24,7 +27,7 @@ function App() {
           Acesso ao certificado
         </h1>
       </header>
-      <form onSubmit={validateHandler(dataUrl)}>
+      <form onSubmit={fetchData}>
         <div>
           <input onChange={e => {
             e.preventDefault()
@@ -33,6 +36,7 @@ function App() {
         </div>
         <button>Acessar certificado</button>
       </form>
+      {emailList !== false ? emailList.includes(devskillerEmail) ? <h2>PARABÉNS!! Pegue seu certificado!</h2> : <h2>Que pena, você não tem certificado no momento</h2> : null}
     </div>
   );
 }
