@@ -5,11 +5,16 @@ const dataUrl = './hubspot-students-data.json'
 
 function App() {
   const [devskillerEmail, setDevskillerEmail] = useState()
+  const [studentList, setStudentList] = useState()
+
   console.log(devskillerEmail)
 
   const validateHandler = dataUrl => {
     fetch(dataUrl)
-      .then(res => console.log(res.json()))
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
   }
 
   return (
